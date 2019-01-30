@@ -7,7 +7,8 @@
 
 #include "uriparser2.h"
 
-static void print(URI *a) {
+#ifdef DEBUG_TEST
+  static void print(URI *a) {
 	if (a) {
 		printf(
 			"scheme  =%s\n"
@@ -23,14 +24,15 @@ static void print(URI *a) {
 	} else {
 		printf("null");
 	}
-}
+  }
 
-static URI *uri_parse2(const char *uri) {
+  static URI *uri_parse2(const char *uri) {
 	URI *a = uri_parse(uri);
 	print(a);
 	return a;
-}
-//#define uri_parse(s)	uri_parse2(s)
+  }
+  #define uri_parse(s)	uri_parse2(s)
+#endif
 
 static void simple_test(void) {
 	URI *a = uri_parse("http://www.google.com/search?q=uriparser#top");
